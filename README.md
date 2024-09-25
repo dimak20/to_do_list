@@ -4,13 +4,6 @@
 Custom TODO list
 
 
-(Optional) Load fixtures and use this credentials to log in:
-```shell
-python manage.py loaddata data.json
-```
-**Username:** `admin`
-
-**Password:** `admin`
 ## Getting started
 
 1. Clone repository  
@@ -44,10 +37,13 @@ pip install -r requirements.txt
 python manage.py makemigrations
 python manage.py migrate
 ```
-5. (Optional) Also you can load fixture data
+5. (Optional) Load fixtures and use this credentials to log in:
 ```shell
-python manage.py loaddata auction_data.json
+python manage.py loaddata data.json
 ```
+**Username:** `admin`
+
+**Password:** `admin`
 
 
 6. And finally, create superuser and run server
