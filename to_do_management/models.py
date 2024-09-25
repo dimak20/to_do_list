@@ -9,7 +9,7 @@ class Tag(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('management:tag-detail', args=[str(self.id)])
+        return reverse("management:tag-detail", args=[str(self.id)])
 
 
 class Task(models.Model):
@@ -23,7 +23,7 @@ class Task(models.Model):
         return self.content
 
     def get_absolute_url(self):
-        return reverse('management:task-detail', args=[str(self.id)])
+        return reverse("management:task-detail", args=[str(self.id)])
 
     @property
     def is_done(self):
