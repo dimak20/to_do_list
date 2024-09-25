@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load crispy_forms_filters %}
 {% block content %}
 <div class="col-md-12">
             <div class="d-flex justify-content-between align-items-center">
@@ -7,63 +8,71 @@
         Add task
     </a>
 </div>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-{#                        <th class="border-bottom" scope="col">#}
-{#                    <a href="?sort_by=title&sort_dir={% if current_sort_by == 'title' and current_sort_dir == 'desc' %}asc{% else %}desc{% endif %}">#}
-{#                      Title#}
-{#                      <svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">#}
-{#                        <path d="M12 19.5L6 13.5H18L12 19.5Z"#}
-{#                              fill="{% if current_sort_by == 'name' and current_sort_dir == 'desc' %}currentColor{% else %}gray{% endif %}"#}
-{#                              class="sorting-alternate-up"></path>#}
-{#                        <path d="M12 4.5L18 10.5H6L12 4.5Z"#}
-{#                              fill="{% if current_sort_by == 'name' and current_sort_dir == 'asc' %}currentColor{% else %}gray{% endif %}"#}
-{#                              class="sorting-alternate-up"></path>#}
-{#                      </svg>#}
-{#                    </a>#}
-{#                  </th>#}
-                        <th>ID</th>
-                        <th>Content</th>
-                        <th>Created_time</th>
-                        <th>Deadline</th>
-                        <th>Tags</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {% for task in task_list %}
-                    <tr>
-                        <td><a href="{% url 'management:task-detail' pk=task.id %}" >{{ task.id }}</a></td>
-                        <td>{{ task.content }}</td>
-                        <td>{{ task.created_time }}</td>
-                      <td>{{ task.deadline }}</td>
-                    <td>
-                      {{ task.tags.all|join:", " }}
-                    </td>
-                    <td>
-                    {% if task.is_done %}
-                      <span class="badge bg-success" style="font-size: 1.2em;">Done</span>
-                    {% else %}
-                      <span class="badge bg-danger" style="font-size: 1.2em;">Not done</span>
-                    {% endif %}
-                    </td>
-
-                      <td>
-                        {% if task.is_done %}
-                          <a href="{% url 'management:task-change' pk=task.id %}" class="btn btn-warning">Undo</a>
-                        {% else %}
-                          <a href="{% url 'management:task-change' pk=task.id %}" class="btn btn-warning">Complete</a>
-                        {% endif %}
-                      </td>
-                    </tr>
-                {% empty %}
-                <tr>
-                    <td colspan="5">No tasks</td>
-                </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+  <form method="get" action="" class="form-inline d-flex align-items-end">
+    {{ search_form|crispy }}
+    <input type="submit" value="💩" class="btn btn-secondary ml-2">
+  </form>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>
+        <a href="?sort_by=id&sort_dir={% if current_sort_by == 'id' and current_sort_dir == 'desc' %}asc{% else %}desc{% endif %}">
+          ID
+        </a>
+      </th>
+      <th>
+        <a href="?sort_by=content&sort_dir={% if current_sort_by == 'content' and current_sort_dir == 'desc' %}asc{% else %}desc{% endif %}">
+          Content
+        </a>
+      </th>
+      <th>
+        <a href="?sort_by=created_time&sort_dir={% if current_sort_by == 'created_time' and current_sort_dir == 'desc' %}asc{% else %}desc{% endif %}">
+          Created Time
+        </a>
+      </th>
+      <th>
+        <a href="?sort_by=deadline&sort_dir={% if current_sort_by == 'deadline' and current_sort_dir == 'desc' %}asc{% else %}desc{% endif %}">
+          Deadline
+        </a>
+      </th>
+      <th>
+        <a href="?sort_by=status&sort_dir={% if current_sort_by == 'status' and current_sort_dir == 'desc' %}asc{% else %}desc{% endif %}">
+          Status
+        </a>
+      </th>
+      <th>Tags</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for task in task_list %}
+      <tr>
+        <td><a href="{% url 'management:task-detail' pk=task.id %}">{{ task.id }}</a></td>
+        <td>{{ task.content }}</td>
+        <td>{{ task.created_time }}</td>
+        <td>{{ task.deadline }}</td>
+        <td>
+          {% if task.status %}
+            <span class="badge bg-success" style="font-size: 1.2em;">Done</span>
+          {% else %}
+            <span class="badge bg-danger" style="font-size: 1.2em;">Not done</span>
+          {% endif %}
+        </td>
+        <td>{{ task.tags.all|join:", " }}</td>
+        <td>
+          {% if task.status %}
+            <a href="{% url 'management:task-change' pk=task.id %}" class="btn btn-warning">Undo</a>
+          {% else %}
+            <a href="{% url 'management:task-change' pk=task.id %}" class="btn btn-warning">Complete</a>
+          {% endif %}
+        </td>
+      </tr>
+    {% empty %}
+      <tr>
+        <td colspan="7">No tasks</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
 </div>
 {% endblock %}
