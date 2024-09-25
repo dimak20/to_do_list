@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Task</h1>
+  <h1>
+    <a href="{% url 'management:task-delete' pk=task.id %}" class="btn btn-danger link-to-page " style="float:right" >
+      Delete
+    </a>
+
+    <a href="{% url 'management:task-update' pk=task.id %}" class="btn btn-secondary link-to-page" style="float:right; ; margin-right: 10px" >
+      Update
+    </a>
+  </h1>
+  <p><strong>Content: </strong>{{ task.content  }}</p>
+  <p><strong>Created_time: </strong>{{ task.created_time  }}</p>
+  <p>Deadline: {{ task.created_time  }}</p>
+  <p>Status {{ task.status  }}</p>
+  <div class="ml-3">
+    <h3>Tags:</h3>
+    {% for tag in task.tags.all %}
+      <hr>
+      <p class="text-muted">{{ tag.id }}</p>
+      <p>{{ tag.name}}
+      </p>
+    {% empty %}
+      <p>No tags!</p>
+    {% endfor %}
+  </div>
+{% endblock %}
