@@ -8,6 +8,9 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('management:tag-detail', args=[str(self.id)])
+
 
 class Task(models.Model):
     content = models.CharField(max_length=255)
