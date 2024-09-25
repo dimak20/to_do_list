@@ -354,3 +354,9 @@ pyrightconfig.json
 # End of https://www.toptal.com/developers/gitignore/api/python,django,pycharm+all
 /aws.xml
 /misc.xml
+/workspace.xml
+/vcs.xml
+/inspectionProfiles/Project_Default.xml
+/inspectionProfiles/profiles_settings.xml
+/modules.xml
+/to_do_list.iml
