@@ -28,3 +28,6 @@ class Task(models.Model):
     @property
     def is_done(self):
         return self.status
+
+    class Meta:
+        ordering = ("-status", "-created_time")
