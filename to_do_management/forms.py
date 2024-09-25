@@ -1,6 +1,5 @@
 from django import forms
-from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import UserCreationForm
+from django.utils import timezone
 
 from to_do_management.models import Task, Tag
 
@@ -19,3 +18,21 @@ class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
         fields = "__all__"
+
+    def clean_deadline(self):
+        deadline = self.cleaned_data["deadline"]
+        if deadline and deadline < timezone.now():
+            raise forms.ValidationError("Deadline needs to be far than now")
+        return deadline
+
+class TaskSearch(forms.Form):
+    content = forms.CharField(
+        max_length=255,
+        required=False,
+        label="",
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Search by content",
+            }
+        )
+    )
