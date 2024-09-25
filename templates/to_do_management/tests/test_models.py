@@ -1,8 +1,8 @@
 from datetime import timedelta
 
-from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.utils import timezone
+
 from to_do_management.models import Task, Tag
 
 
@@ -24,4 +24,3 @@ class ModelTests(TestCase):
                 f"{task.deadline}"
             )
         )
-
