@@ -23,7 +23,7 @@ class TaskListView(generic.ListView):
         sort_order = "" if sort_dir == "asc" else "-"
 
         if sort_by == "status":
-            queryset = queryset.order_by(f"{sort_order}status")
+            queryset = queryset.order_by(f"{sort_order}status", "-created_time")
 
         else:
             queryset = queryset.order_by(f"{sort_order}{sort_by}")
