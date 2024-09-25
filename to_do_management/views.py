@@ -18,7 +18,7 @@ class TaskListView(generic.ListView):
     def get_queryset(self):
         queryset = Task.objects.prefetch_related("tags")
 
-        sort_by = self.request.GET.get("sort_by", "id")
+        sort_by = self.request.GET.get("sort_by", "status")
         sort_dir = self.request.GET.get("sort_dir", "asc")
         sort_order = "" if sort_dir == "asc" else "-"
 
