@@ -1,5 +1,23 @@
 [
   {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$urWczARaTxZfKmxPY3coyL$2ZXYf95AeKM/sx1jyfA41I3NKT/3z/NS2e3CRgPh1Os=",
+      "last_login": "2024-09-25T08:56:38.212Z",
+      "is_superuser": true,
+      "username": "admin",
+      "first_name": "",
+      "last_name": "",
+      "email": "a@gmail.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2024-09-25T08:55:54.660Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
     "model": "to_do_management.tag",
     "pk": 1,
     "fields": {
