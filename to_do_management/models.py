@@ -30,4 +30,4 @@ class Task(models.Model):
         return self.status
 
     class Meta:
-        ordering = ("-status", "-created_time")
+        ordering = ("status", "-created_time")
