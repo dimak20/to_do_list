@@ -76,6 +76,21 @@ class PrivateTaskTest(TestCase):
         deleted_task = Task.objects.filter(id=task_id).exists()
         self.assertFalse(deleted_task)
 
+    def test_pagination_task(self):
+        tasks = [
+            Task(
+                content=f"test_pagination{i}",
+                created_time=timezone.now(),
+                deadline=timezone.now() + timedelta(days=1)
+            ) for i in range(20)
+        ]
+        Task.objects.bulk_create(tasks)
+        response = self.client.get(TASK_URL)
+        self.assertEqual(response.status_code, 200)
+        tasks = Task.objects.all()[:10]
+        self.assertEqual(list(response.context["task_list"]), list(tasks))
+        self.assertTemplateUsed(response, "to_do_management/home2.html")
+
 
 class PrivateTagTest(TestCase):
     def setUp(self):
