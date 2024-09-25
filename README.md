@@ -97,3 +97,4 @@ Project
 * Creation tags
 * Cheange task status
 * Delete and update tasks/tags
+* Sort by content, id, status, dates
