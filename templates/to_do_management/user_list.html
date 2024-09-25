@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>User List</h1>
+  {% if author_list %}
+    <ul>
+      {% for user in user_list %}
+        <li>{{ user.username }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endblock %}

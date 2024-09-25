@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+{% block content %}
+<div class="col-md-12">
+            <div class="d-flex justify-content-between align-items-center">
+    <h2>TODO list</h2>
+    <a href="{% url 'management:task-create' %}" class="btn btn-primary">
+        Add task
+    </a>
+</div>
+  <form method="get" action="" class="form-inline d-flex align-items-end">
+    {{ search_form|crispy }}
+    <input type="submit" value="💩" class="btn btn-secondary ml-2">
+  </form>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>
+        <a href="?sort_by=id&sort_dir={% if current_sort_by == 'id' and current_sort_dir == 'desc' %}asc{% else %}desc{% endif %}">
+          ID
+        </a>
+      </th>
+      <th>
+        <a href="?sort_by=content&sort_dir={% if current_sort_by == 'content' and current_sort_dir == 'desc' %}asc{% else %}desc{% endif %}">
+          Content
+        </a>
+      </th>
+      <th>
+        <a href="?sort_by=created_time&sort_dir={% if current_sort_by == 'created_time' and current_sort_dir == 'desc' %}asc{% else %}desc{% endif %}">
+          Created Time
+        </a>
+      </th>
+      <th>
+        <a href="?sort_by=deadline&sort_dir={% if current_sort_by == 'deadline' and current_sort_dir == 'desc' %}asc{% else %}desc{% endif %}">
+          Deadline
+        </a>
+      </th>
+      <th>
+        <a href="?sort_by=status&sort_dir={% if current_sort_by == 'status' and current_sort_dir == 'desc' %}asc{% else %}desc{% endif %}">
+          Status
+        </a>
+      </th>
+      <th>Tags</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for task in task_list %}
+      <tr>
+        <td><a href="{% url 'management:task-detail' pk=task.id %}">{{ task.id }}</a></td>
+        <td>{{ task.content }}</td>
+        <td>{{ task.created_time }}</td>
+        <td>{{ task.deadline }}</td>
+        <td>
+          {% if task.status %}
+            <span class="badge bg-success" style="font-size: 1.2em;">Done</span>
+          {% else %}
+            <span class="badge bg-danger" style="font-size: 1.2em;">Not done</span>
+          {% endif %}
+        </td>
+        <td>{{ task.tags.all|join:", " }}</td>
+        <td>
+          {% if task.status %}
+            <a href="{% url 'management:task-change' pk=task.id %}" class="btn btn-warning">Undo</a>
+          {% else %}
+            <a href="{% url 'management:task-change' pk=task.id %}" class="btn btn-warning">Complete</a>
+          {% endif %}
+        </td>
+      </tr>
+    {% empty %}
+      <tr>
+        <td colspan="7">No tasks</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
