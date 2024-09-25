@@ -1,4 +1,7 @@
 from django.shortcuts import render
+from django.views import generic
 
-def index():
+
+
+class TaskListView(generic.ListView):
     pass
