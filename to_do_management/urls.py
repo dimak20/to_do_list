@@ -2,8 +2,18 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
 
-from to_do_management.views import TaskListView, TaskCreateView, TaskDetailView, TaskUpdateView, TaskDeleteView, \
-    TagUpdateView, TagDeleteView, TagCreateView, TagListView, change_status
+from to_do_management.views import (
+    TaskListView,
+    TaskCreateView,
+    TaskDetailView,
+    TaskUpdateView,
+    TaskDeleteView,
+    TagUpdateView,
+    TagDeleteView,
+    TagCreateView,
+    TagListView,
+    change_status
+)
 
 app_name = "management"
 

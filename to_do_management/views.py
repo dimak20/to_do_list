@@ -30,9 +30,7 @@ class TaskListView(generic.ListView):
 
         form = TaskSearch(self.request.GET)
         if form.is_valid():
-            return queryset.filter(
-                content__icontains=form.cleaned_data["content"]
-            )
+            return queryset.filter(content__icontains=form.cleaned_data["content"])
 
         return queryset
 
@@ -41,9 +39,7 @@ class TaskListView(generic.ListView):
         context["current_sort_by"] = self.request.GET.get("sort_by", "id")
         context["current_sort_dir"] = self.request.GET.get("sort_dir", "asc")
         content = self.request.GET.get("content", "")
-        context["search_form"] = TaskSearch(
-            initial={"content": content}
-        )
+        context["search_form"] = TaskSearch(initial={"content": content})
         return context
 
 

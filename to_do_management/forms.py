@@ -15,6 +15,7 @@ class TaskForm(forms.ModelForm):
             attrs={"type": "datetime-local", "class": "form-control"}
         )
     )
+
     class Meta:
         model = Task
         fields = "__all__"
@@ -24,6 +25,7 @@ class TaskForm(forms.ModelForm):
         if deadline and deadline < timezone.now():
             raise forms.ValidationError("Deadline needs to be far than now")
         return deadline
+
 
 class TaskSearch(forms.Form):
     content = forms.CharField(

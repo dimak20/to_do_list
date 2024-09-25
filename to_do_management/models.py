@@ -20,7 +20,7 @@ class Task(models.Model):
     tags = models.ManyToManyField(Tag, related_name="tasks", blank=True)
 
     def __str__(self):
-        return f"{self.content} {self.created_time} { self.deadline}"
+        return f"{self.content} {self.created_time} {self.deadline}"
 
     def get_absolute_url(self):
         return reverse("management:task-detail", args=[str(self.id)])
