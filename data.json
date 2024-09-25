@@ -1,0 +1,130 @@
+[
+  {
+    "model": "to_do_management.tag",
+    "pk": 1,
+    "fields": {
+      "name": "Bsdfsd"
+    }
+  },
+  {
+    "model": "to_do_management.tag",
+    "pk": 2,
+    "fields": {
+      "name": "Tag2"
+    }
+  },
+  {
+    "model": "to_do_management.tag",
+    "pk": 3,
+    "fields": {
+      "name": "Tag3"
+    }
+  },
+  {
+    "model": "to_do_management.tag",
+    "pk": 4,
+    "fields": {
+      "name": "Mate"
+    }
+  },
+  {
+    "model": "to_do_management.tag",
+    "pk": 5,
+    "fields": {
+      "name": "Home"
+    }
+  },
+  {
+    "model": "to_do_management.tag",
+    "pk": 6,
+    "fields": {
+      "name": "Leisure"
+    }
+  },
+  {
+    "model": "to_do_management.tag",
+    "pk": 7,
+    "fields": {
+      "name": "Work"
+    }
+  },
+  {
+    "model": "to_do_management.task",
+    "pk": 1,
+    "fields": {
+      "content": "aaa",
+      "created_time": "2024-09-25T08:13:22.596Z",
+      "deadline": "2024-09-26T08:13:00Z",
+      "status": true,
+      "tags": [
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "model": "to_do_management.task",
+    "pk": 2,
+    "fields": {
+      "content": "Task2",
+      "created_time": "2024-09-25T09:38:29.553Z",
+      "deadline": "2024-09-27T09:38:00Z",
+      "status": false,
+      "tags": [
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "model": "to_do_management.task",
+    "pk": 3,
+    "fields": {
+      "content": "Test_2",
+      "created_time": "2024-09-25T11:15:51.324Z",
+      "deadline": "2024-09-26T11:15:00Z",
+      "status": false,
+      "tags": []
+    }
+  },
+  {
+    "model": "to_do_management.task",
+    "pk": 4,
+    "fields": {
+      "content": "Pass exam",
+      "created_time": "2024-09-25T12:20:46.773Z",
+      "deadline": "2024-09-25T13:26:00Z",
+      "status": true,
+      "tags": [
+        4
+      ]
+    }
+  },
+  {
+    "model": "to_do_management.task",
+    "pk": 5,
+    "fields": {
+      "content": "Clean room",
+      "created_time": "2024-09-25T12:33:25.848Z",
+      "deadline": "2025-10-26T13:33:00Z",
+      "status": true,
+      "tags": [
+        5
+      ]
+    }
+  },
+  {
+    "model": "to_do_management.task",
+    "pk": 6,
+    "fields": {
+      "content": "Fill documents",
+      "created_time": "2024-09-25T12:39:00.030Z",
+      "deadline": "2024-09-28T12:38:00Z",
+      "status": false,
+      "tags": [
+        7
+      ]
+    }
+  }
+]

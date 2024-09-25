@@ -4,8 +4,10 @@
 Custom TODO list
 
 
-(Optional) Use this credentials to log in:
-
+(Optional) Load fixtures and use this credentials to log in:
+```shell
+python manage.py loaddata data.json
+```
 **Username:** `admin`
 
 **Password:** `admin`
