@@ -20,6 +20,18 @@ class TaskCreateView(generic.CreateView):
 class TaskDetailView(generic.DetailView):
     model = Task
 
+class TaskUpdateView(generic.UpdateView):
+    model = Task
+    fields = ["content", "deadline", "tags"]
+
+    def get_success_url(self):
+        return self.get_object().get_absolute_url()
+
+class TaskDeleteView(generic.DeleteView):
+    model = Task
+    success_url = reverse_lazy("management:home")
+
+
 
 
 
