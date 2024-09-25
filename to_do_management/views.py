@@ -1,4 +1,7 @@
-from django.shortcuts import render
+from http.client import HTTPResponse
+
+from django.http import HttpRequest
+from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -9,7 +12,7 @@ from to_do_management.models import Task, Tag
 class TaskListView(generic.ListView):
     model = Task
     paginate_by = 10
-    template_name = "to_do_management/home.html"
+    template_name = "to_do_management/home2.html"
 
 class TaskCreateView(generic.CreateView):
     form_class = TaskForm
@@ -22,7 +25,7 @@ class TaskDetailView(generic.DetailView):
 
 class TaskUpdateView(generic.UpdateView):
     model = Task
-    fields = ["content", "deadline", "tags"]
+    form_class = TaskForm
 
     def get_success_url(self):
         return self.get_object().get_absolute_url()
@@ -32,6 +35,11 @@ class TaskDeleteView(generic.DeleteView):
     success_url = reverse_lazy("management:home")
 
 
+def change_status(request: HttpRequest, pk: int) -> HTTPResponse:
+    task = get_object_or_404(Task, pk=pk)
+    task.status = not task.status
+    task.save()
+    return redirect("management:home")
 
 class TagListView(generic.ListView):
     model = Tag
