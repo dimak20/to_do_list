@@ -24,3 +24,7 @@ class Task(models.Model):
 
     def get_absolute_url(self):
         return reverse('management:task-detail', args=[str(self.id)])
+
+    @property
+    def is_done(self):
+        return self.status
