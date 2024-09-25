@@ -33,21 +33,26 @@ class TaskDeleteView(generic.DeleteView):
 
 
 
-
-
-
 class TagListView(generic.ListView):
-    pass
+    model = Tag
+    paginate_by = 10
 
 class TagCreateView(generic.CreateView):
-    pass
+    model = Tag
+    fields = "__all__"
+    success_url = reverse_lazy("management:home")
 
 class TagDeleteView(generic.DeleteView):
-    pass
+    model = Tag
+    success_url = reverse_lazy("management:home")
 
 class TagDetailView(generic.DetailView):
-    pass
+    model = Tag
 
 class TagUpdateView(generic.UpdateView):
-    pass
+    model = Tag
+
+    def get_success_url(self):
+        return self.get_object().get_absolute_url()
+
 
