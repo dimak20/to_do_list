@@ -100,6 +100,7 @@ class TagDetailView(generic.DetailView):
 
 class TagUpdateView(generic.UpdateView):
     model = Tag
+    fields = "__all__"
 
     def get_success_url(self):
         return self.get_object().get_absolute_url()
